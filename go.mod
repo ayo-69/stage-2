@@ -1,6 +1,6 @@
 module github.com/ayo-69/stage-2
 
-go 1.25.1
+go 1.25.0
 
 require (
 	github.com/fogleman/gg v1.3.0
