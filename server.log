@@ -62,3 +62,47 @@
 
 2025/10/26 23:25:56 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
 [0m[31;1m[328.565ms] [33m[rows:1][35m SELECT CURRENT_DATABASE()[0m
+
+2025/10/26 23:25:57 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[514.068ms] [33m[rows:-][35m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'neondb' AND table_schema = CURRENT_SCHEMA() AND table_name = 'statuses'[0m
+
+2025/10/26 23:25:57 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[376.318ms] [33m[rows:-][35m SELECT * FROM "statuses" LIMIT 5[0m
+
+2025/10/26 23:25:58 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[630.209ms] [33m[rows:-][35m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'statuses' AND constraint_type = 'UNIQUE'[0m
+
+2025/10/26 23:25:58 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[260.386ms] [33m[rows:-][35m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'statuses'[0m
+
+2025/10/26 23:25:58 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[336.004ms] [33m[rows:-][35m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'statuses'[0m
+
+2025/10/26 23:25:59 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[715.846ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'statuses' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'statuses' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:59 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[307.172ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'statuses' AND column_name = 'last_refreshed_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'statuses' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:26:00 [32m/home/isaac/Documents/intern/task-003/main.go:44 [33mSLOW SQL >= 200ms
+[0m[31;1m[614.284ms] [33m[rows:1][35m SELECT * FROM "statuses" WHERE "statuses"."id" = 1 ORDER BY "statuses"."id" LIMIT 1[0m
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /countries/refresh        --> main.main.RefreshCountries.func2 (3 handlers)
+[GIN-debug] GET    /countries                --> main.main.GetCountries.func3 (3 handlers)
+[GIN-debug] GET    /countries/:name          --> main.main.GetCountry.func4 (3 handlers)
+[GIN-debug] DELETE /countries/:name          --> main.main.DeleteCountry.func5 (3 handlers)
+[GIN-debug] GET    /status                   --> main.main.GetStatus.func6 (3 handlers)
+[GIN-debug] GET    /countries/image          --> github.com/ayo-69/stage-2/controllers.GetSummaryImage (3 handlers)
+2025/10/26 23:26:00 Server starting on http://localhost:3000
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://github.com/gin-gonic/gin/blob/master/docs/doc.md#dont-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :3000
