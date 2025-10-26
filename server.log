@@ -1,0 +1,64 @@
+
+2025/10/26 23:25:44 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[921.474ms] [33m[rows:1][35m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND table_type = 'BASE TABLE'[0m
+
+2025/10/26 23:25:45 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[614.069ms] [33m[rows:1][35m SELECT CURRENT_DATABASE()[0m
+
+2025/10/26 23:25:45 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[572.219ms] [33m[rows:-][35m SELECT c.column_name, c.is_nullable = 'YES', c.udt_name, c.character_maximum_length, c.numeric_precision, c.numeric_precision_radix, c.numeric_scale, c.datetime_precision, 8 * typlen, c.column_default, pd.description, c.identity_increment FROM information_schema.columns AS c JOIN pg_type AS pgt ON c.udt_name = pgt.typname LEFT JOIN pg_catalog.pg_description as pd ON pd.objsubid = c.ordinal_position AND pd.objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = c.table_name AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = c.table_schema)) where table_catalog = 'neondb' AND table_schema = CURRENT_SCHEMA() AND table_name = 'countries'[0m
+
+2025/10/26 23:25:47 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[926.634ms] [33m[rows:-][35m SELECT * FROM "countries" LIMIT 5[0m
+
+2025/10/26 23:25:48 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[1122.882ms] [33m[rows:-][35m SELECT constraint_name FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'countries' AND constraint_type = 'UNIQUE'[0m
+
+2025/10/26 23:25:49 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[920.984ms] [33m[rows:-][35m SELECT c.column_name, constraint_name, constraint_type FROM information_schema.table_constraints tc JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_catalog, table_name, constraint_name) JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema AND tc.table_name = c.table_name AND ccu.column_name = c.column_name WHERE constraint_type IN ('PRIMARY KEY', 'UNIQUE') AND c.table_catalog = 'neondb' AND c.table_schema = CURRENT_SCHEMA() AND c.table_name = 'countries'[0m
+
+2025/10/26 23:25:50 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[921.943ms] [33m[rows:-][35m SELECT a.attname as column_name, format_type(a.atttypid, a.atttypmod) AS data_type
+		FROM pg_attribute a JOIN pg_class b ON a.attrelid = b.oid AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA())
+		WHERE a.attnum > 0 -- hide internal columns
+		AND NOT a.attisdropped -- hide deleted columns
+		AND b.relname = 'countries'[0m
+
+2025/10/26 23:25:50 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[613.263ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'id') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:51 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[409.683ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'name') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:51 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[260.942ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'capital') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:51 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[352.461ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'region') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:52 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[716.765ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'population') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:52 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[420.313ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'currency_code') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:53 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[615.050ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'exchage_rate') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:53 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[449.119ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'estimate_gdp') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:54 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[325.209ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'flag_url') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:54 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[422.221ms] [33m[rows:0][35m SELECT description FROM pg_catalog.pg_description WHERE objsubid = (SELECT ordinal_position FROM information_schema.columns WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'countries' AND column_name = 'last_refreshed_at') AND objoid = (SELECT oid FROM pg_catalog.pg_class WHERE relname = 'countries' AND relnamespace = (SELECT oid FROM pg_catalog.pg_namespace WHERE nspname = CURRENT_SCHEMA()))[0m
+
+2025/10/26 23:25:55 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[967.629ms] [33m[rows:1][35m SELECT count(*) FROM pg_indexes WHERE tablename = 'countries' AND indexname = 'idx_countries_name' AND schemaname = CURRENT_SCHEMA()[0m
+
+2025/10/26 23:25:56 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[600.142ms] [33m[rows:1][35m SELECT count(*) FROM information_schema.tables WHERE table_schema = CURRENT_SCHEMA() AND table_name = 'statuses' AND table_type = 'BASE TABLE'[0m
+
+2025/10/26 23:25:56 [32m/home/isaac/Documents/intern/task-003/main.go:38 [33mSLOW SQL >= 200ms
+[0m[31;1m[328.565ms] [33m[rows:1][35m SELECT CURRENT_DATABASE()[0m
